@@ -5,89 +5,139 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 📦 Datos del proyecto -->
-    <groupId>com.proyectoweb</groupId>
-    <artifactId>tienda</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ProyectoWeb</name>
-    <description>Aplicación web de tienda de ropa - Proyecto académico</description>
-
-    <!-- 🧱 Parent de Spring Boot -->
+    <!-- Parent de Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.0</version>
-        <relativePath/> <!-- Busca el parent en el repositorio central -->
+        <relativePath/>
     </parent>
 
-    <!-- ⚙️ Propiedades del proyecto -->
+    <!-- Datos del proyecto -->
+    <groupId>com.tiendaproyecto</groupId>
+    <artifactId>tienda</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>TiendaRopa</name>
+    <description>Aplicación web de tienda de ropa - Proyecto académico</description>
+
+    <!-- Propiedades del proyecto -->
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <!-- 🧩 Dependencias principales -->
+    <!-- Dependencias principales -->
     <dependencies>
 
-        <!-- 🌐 Web -->
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 🎨 Plantillas Thymeleaf -->
+        <!-- Thymeleaf - Motor de plantillas -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- 🗃️ Conexión a base de datos MySQL -->
+        <!-- MySQL Connector -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- 🧠 JPA (Hibernate) para persistencia -->
+        <!-- JPA / Hibernate - Persistencia de datos -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- 🔐 Seguridad básica (login, roles) -->
+        <!-- Spring Security - Autenticación y autorización -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- 🧪 Pruebas con JUnit -->
+        <!-- Thymeleaf Spring Security Integration -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity6</artifactId>
         </dependency>
 
-        <!-- 🧩 Validaciones con anotaciones (ej: @Email, @NotBlank) -->
+        <!-- Validaciones Bean Validation (Jakarta) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- 💬 Soporte para subir archivos e imágenes -->
+        <!-- Apache Commons FileUpload - Subida de archivos -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.5</version>
         </dependency>
 
+        <!-- Apache Commons IO - Utilidades para archivos -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.15.1</version>
+        </dependency>
+
+        <!-- Lombok (Opcional) - Reduce código boilerplate -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot DevTools - Hot reload en desarrollo -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot Starter Test - Pruebas unitarias -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Security Test - Pruebas de seguridad -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
-    <!-- 🔨 Plugins de compilación -->
+    <!-- Plugins de compilación y empaquetado -->
     <build>
         <plugins>
 
-            <!-- Compilador Java -->
+            <!-- Plugin de Spring Boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.tiendaproyecto.tienda.TiendaRopaApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin del compilador de Maven -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -95,17 +145,25 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
 
-            <!-- Plugin de Spring Boot -->
+            <!-- Plugin de recursos -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
                 <configuration>
-                    <mainClass>com.proyectoweb.tienda.TiendaApplication</mainClass>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+
+            <!-- Plugin Surefire para pruebas -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
             </plugin>
 
         </plugins>

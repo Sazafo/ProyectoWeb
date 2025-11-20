@@ -1,15 +1,62 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Pendiente - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .pendiente-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 60px;
+            max-width: 600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pendiente-card mx-auto">
+            <div class="mb-4">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                    <circle cx="60" cy="60" r="58" stroke="#FFA500" stroke-width="4"/>
+                    <circle cx="60" cy="45" r="4" fill="#FFA500"/>
+                    <rect x="56" y="55" width="8" height="35" rx="4" fill="#FFA500"/>
+                </svg>
+            </div>
+            
+            <h2 class="mb-3">Cuenta Pendiente de Aprobación</h2>
+            
+            <p class="lead mb-4">
+                Tu solicitud como vendedor está siendo revisada por nuestro equipo. 
+                Te notificaremos por correo cuando tu cuenta sea aprobada.
+            </p>
+            
+            <div class="alert alert-info">
+                <strong>Proceso de revisión:</strong><br>
+                Nuestro equipo verifica la información de tu negocio. 
+                Este proceso puede tardar entre 24 a 48 horas.
+            </div>
+            
+            <p class="text-muted mb-4">
+                Si tienes alguna duda, contáctanos a: <br>
+                <a href="mailto:soporte@tiendaropa.com">soporte@tiendaropa.com</a>
+            </p>
+            
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-primary">
+                    Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

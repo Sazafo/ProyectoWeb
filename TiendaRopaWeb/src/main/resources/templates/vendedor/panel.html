@@ -1,15 +1,136 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Vendedor - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .stat-card { border-left: 4px solid #f5576c; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/vendedor/panel">Panel Vendedor</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/productos/publicar">Publicar Producto</a>
+                <a class="nav-link" href="/vendedor/inventario">Inventario</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HU-014: Panel del vendedor -->
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h2>
+                    Bienvenido, <span th:text="${vendedor.nombre}">Vendedor</span> 
+                    <small class="text-muted">(<span th:text="${vendedor.nombreNegocio}">Negocio</span>)</small>
+                </h2>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h3 class="text-primary" th:text="${#lists.size(productos)}">0</h3>
+                        <p class="mb-0">Productos publicados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h3 class="text-success">
+                            <span th:text="${#lists.size(#lists.filter(productos, p -> p.estado.name() == 'APROBADO'))}">0</span>
+                        </h3>
+                        <p class="mb-0">Productos aprobados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <h3 class="text-warning">
+                            <span th:text="${#lists.size(#lists.filter(productos, p -> p.estado.name() == 'PENDIENTE'))}">0</span>
+                        </h3>
+                        <p class="mb-0">Pendientes de aprobación</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acciones rápidas -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Acciones Rápidas</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="/productos/publicar" class="btn btn-primary me-2">Publicar Producto</a>
+                        <a href="/vendedor/inventario" class="btn btn-outline-primary">Ver Inventario Completo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos recientes -->
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-3">Últimos Productos Publicados</h4>
+                
+                <div th:if="${#lists.isEmpty(productos)}" class="alert alert-info">
+                    No tienes productos publicados. <a href="/productos/publicar">Publica tu primer producto</a>
+                </div>
+
+                <div class="table-responsive" th:unless="${#lists.isEmpty(productos)}">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="prod : ${productos}" th:if="${prodStat.index < 10}">
+                                <td><strong th:text="${prod.nombre}">Producto</strong></td>
+                                <td><span class="badge bg-secondary" th:text="${prod.categoria}">Cat</span></td>
+                                <td>₡ <span th:text="${prod.precio}">0.00</span></td>
+                                <td>
+                                    <span th:text="${prod.stock}">0</span>
+                                    <span class="badge bg-warning ms-1" th:if="${prod.stock < 5 && prod.stock > 0}">Bajo</span>
+                                    <span class="badge bg-danger ms-1" th:if="${prod.stock == 0}">Agotado</span>
+                                </td>
+                                <td>
+                                    <span class="badge" 
+                                          th:classappend="${prod.estado.name() == 'PENDIENTE'} ? 'bg-warning' : 
+                                                         (${prod.estado.name() == 'APROBADO'} ? 'bg-success' : 'bg-secondary')"
+                                          th:text="${prod.estado}">
+                                        Estado
+                                    </span>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/vendedor/productos/' + ${prod.idProducto} + '/editar'}" 
+                                       class="btn btn-sm btn-outline-primary">Editar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

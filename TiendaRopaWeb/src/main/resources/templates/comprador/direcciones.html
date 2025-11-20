@@ -1,15 +1,119 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Direcciones - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .direccion-card { border-left: 4px solid #667eea; }
+        .direccion-principal { border-left-color: #28a745; background-color: #f8fff8; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link active" href="/comprador/direcciones">Direcciones</a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HU-018: Gestión de direcciones -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Mis Direcciones de Envío</h2>
+        
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div class="row">
+            <!-- Lista de direcciones -->
+            <div class="col-md-7">
+                <h4>Direcciones guardadas</h4>
+                
+                <div th:if="${#lists.isEmpty(direcciones)}" class="alert alert-info">
+                    No tienes direcciones guardadas. Agrega una para facilitar tus compras.
+                </div>
+                
+                <div th:each="dir : ${direcciones}" 
+                     class="card mb-3 direccion-card"
+                     th:classappend="${dir.esPrincipal} ? 'direccion-principal' : ''">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5 class="card-title">
+                                    <span th:if="${dir.esPrincipal}" class="badge bg-success">Principal</span>
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Dirección:</strong> <span th:text="${dir.direccion}">Calle 123</span><br>
+                                    <strong>Ciudad:</strong> <span th:text="${dir.ciudad}">Heredia</span><br>
+                                    <strong>Código Postal:</strong> <span th:text="${dir.codigoPostal}">40101</span><br>
+                                    <span th:if="${dir.referencia}">
+                                        <strong>Referencia:</strong> <span th:text="${dir.referencia}">Casa blanca</span>
+                                    </span>
+                                </p>
+                            </div>
+                            <div>
+                                <form th:action="@{'/comprador/direcciones/' + ${dir.idDireccion} + '/eliminar'}" 
+                                      method="post" 
+                                      onsubmit="return confirm('¿Eliminar esta dirección?');">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario para agregar dirección -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Nueva Dirección</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/comprador/direcciones}" method="post" th:object="${nuevaDireccion}">
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección *</label>
+                                <input type="text" class="form-control" id="direccion" th:field="*{direccion}" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="ciudad" class="form-label">Ciudad *</label>
+                                <input type="text" class="form-control" id="ciudad" th:field="*{ciudad}" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="codigoPostal" class="form-label">Código Postal *</label>
+                                <input type="text" class="form-control" id="codigoPostal" th:field="*{codigoPostal}" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="referencia" class="form-label">Referencia</label>
+                                <input type="text" class="form-control" id="referencia" th:field="*{referencia}" placeholder="Ej: Frente al parque">
+                            </div>
+                            
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="esPrincipal" th:field="*{esPrincipal}">
+                                <label class="form-check-label" for="esPrincipal">
+                                    Marcar como dirección principal
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100">Guardar Dirección</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
