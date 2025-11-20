@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tiendaproyecto.tienda.service;
 
 import com.tiendaproyecto.tienda.domain.Usuario;
 import com.tiendaproyecto.tienda.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
@@ -18,8 +13,10 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    /**
+     * ⚠️ Las contraseñas se guardan en TEXTO PLANO
+     * NO usar en producción
+     */
 
     // Registrar comprador
     @Transactional
@@ -27,8 +24,9 @@ public class UsuarioService {
         if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
             throw new Exception("El correo ya está registrado");
         }
-        usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
+        // NO se encripta la contraseña
         usuario.setRol(Usuario.Rol.COMPRADOR);
+        usuario.setAprobado(true);
         return usuarioRepository.save(usuario);
     }
 
@@ -38,7 +36,7 @@ public class UsuarioService {
         if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
             throw new Exception("El correo ya está registrado");
         }
-        usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
+        // NO se encripta la contraseña
         usuario.setRol(Usuario.Rol.VENDEDOR);
         usuario.setAprobado(false); // Pendiente de aprobación
         return usuarioRepository.save(usuario);
@@ -60,8 +58,8 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    // Validar contraseña
-    public boolean validarContrasena(String raw, String encoded) {
-        return passwordEncoder.matches(raw, encoded);
+    // Validar contraseña (comparación directa)
+    public boolean validarContrasena(String raw, String stored) {
+        return raw.equals(stored);
     }
 }

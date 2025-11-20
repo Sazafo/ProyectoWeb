@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -19,16 +20,23 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    /**
+     * ⚠️ ATENCIÓN: NoOpPasswordEncoder NO ES SEGURO
+     * Solo usar para desarrollo/aprendizaje
+     * Las contraseñas se guardan y comparan en texto plano
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
+                // Rutas públicas
                 .requestMatchers("/", "/registro/**", "/login", "/css/**", "/js/**", "/img/**").permitAll()
+                // Rutas por rol
                 .requestMatchers("/vendedor/**").hasAuthority("VENDEDOR")
                 .requestMatchers("/comprador/**").hasAuthority("COMPRADOR")
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
@@ -38,6 +46,8 @@ public class SecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
+                .usernameParameter("username")  // Campo de correo en el form
+                .passwordParameter("password")   // Campo de contraseña en el form
                 .defaultSuccessUrl("/inicio", true)
                 .failureUrl("/login?error=true")
                 .permitAll()
@@ -49,18 +59,24 @@ public class SecurityConfig {
                 .deleteCookies("JSESSIONID")
                 .permitAll()
             )
-            .csrf(csrf -> csrf.disable());
+            .csrf(csrf -> csrf.disable()); // Deshabilitado para facilitar desarrollo
 
         return http.build();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(customUserDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = 
             http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder
-            .userDetailsService(customUserDetailsService)
-            .passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider());
         return authenticationManagerBuilder.build();
     }
 }

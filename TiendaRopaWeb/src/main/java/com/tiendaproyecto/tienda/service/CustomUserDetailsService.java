@@ -22,15 +22,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+        // Buscar usuario por correo
         Usuario usuario = usuarioRepository.findByCorreo(correo)
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + correo));
 
+        // Crear lista de autoridades (roles)
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(usuario.getRol().name()));
 
+        // ⚠️ La contraseña se pasa tal cual está en la base de datos (texto plano)
         return User.builder()
             .username(usuario.getCorreo())
-            .password(usuario.getContrasena())
+            .password(usuario.getContrasena())  // Sin encriptar
             .authorities(authorities)
             .accountExpired(false)
             .accountLocked(false)
