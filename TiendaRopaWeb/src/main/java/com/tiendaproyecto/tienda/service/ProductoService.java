@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tiendaproyecto.tienda.service;
 
 import com.tiendaproyecto.tienda.domain.Producto;
@@ -25,6 +21,7 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
+    // Ruta correcta dentro de resources/static
     private final String UPLOAD_DIR = "src/main/resources/static/img/productos/";
 
     // Publicar producto
@@ -34,6 +31,9 @@ public class ProductoService {
         if (imagen != null && !imagen.isEmpty()) {
             String nombreImagen = guardarImagen(imagen);
             producto.setImagen(nombreImagen);
+        } else {
+            // Imagen por defecto si no se sube ninguna
+            producto.setImagen("default-product.jpg");
         }
         producto.setEstado(Producto.Estado.PENDIENTE);
         return productoRepository.save(producto);
@@ -41,11 +41,29 @@ public class ProductoService {
 
     // Guardar imagen en el servidor
     private String guardarImagen(MultipartFile archivo) throws IOException {
-        String nombreUnico = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename();
-        Path rutaArchivo = Paths.get(UPLOAD_DIR + nombreUnico);
-        Files.createDirectories(rutaArchivo.getParent());
-        Files.write(rutaArchivo, archivo.getBytes());
-        return nombreUnico;
+        try {
+            // Crear directorio si no existe
+            Path uploadPath = Paths.get(UPLOAD_DIR);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            // Generar nombre único
+            String extension = "";
+            String originalFilename = archivo.getOriginalFilename();
+            if (originalFilename != null && originalFilename.contains(".")) {
+                extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            }
+            String nombreUnico = UUID.randomUUID().toString() + extension;
+            
+            // Guardar archivo
+            Path rutaArchivo = uploadPath.resolve(nombreUnico);
+            Files.write(rutaArchivo, archivo.getBytes());
+            
+            return nombreUnico;
+        } catch (IOException e) {
+            throw new IOException("Error al guardar la imagen: " + e.getMessage());
+        }
     }
 
     // Listar productos aprobados
@@ -55,7 +73,11 @@ public class ProductoService {
 
     // Listar productos por categoría
     public List<Producto> listarPorCategoria(String categoria) {
-        return productoRepository.findByCategoria(categoria);
+        List<Producto> productos = productoRepository.findByCategoria(categoria);
+        // Filtrar solo aprobados
+        return productos.stream()
+            .filter(p -> p.getEstado() == Producto.Estado.APROBADO)
+            .toList();
     }
 
     // Listar productos del vendedor

@@ -9,6 +9,7 @@ com\tiendaproyecto\tienda\service\DireccionService.class
 com\tiendaproyecto\tienda\repository\CategoriaRepository.class
 com\tiendaproyecto\tienda\controller\CompradorController.class
 com\tiendaproyecto\tienda\domain\Direccion.class
+com\tiendaproyecto\tienda\service\CustomUserDetailsService.class
 com\tiendaproyecto\tienda\controller\IndexController.class
 com\tiendaproyecto\tienda\domain\Pedido$Estado.class
 com\tiendaproyecto\tienda\service\FavoritoService.class
