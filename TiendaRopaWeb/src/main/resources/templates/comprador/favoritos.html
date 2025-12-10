@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Favoritos - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .producto-card { transition: transform 0.2s; }
+        .producto-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link" href="/comprador/direcciones">Direcciones</a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HU-020: Lista de deseos (Favoritos) -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Mis Productos Favoritos</h2>
+        
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        
+        <div th:if="${#lists.isEmpty(favoritos)}" class="alert alert-info text-center">
+            <h4>No tienes favoritos aún</h4>
+            <p>Marca tus productos favoritos para encontrarlos fácilmente más tarde</p>
+            <a href="/productos" class="btn btn-primary">Explorar Productos</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 mb-4" th:each="fav : ${favoritos}">
+                <div class="card producto-card h-100">
+                    <img th:src="@{'/img/productos/' + ${fav.producto.imagen}}" 
+                         th:alt="${fav.producto.nombre}" 
+                         class="card-img-top" 
+                         style="height: 250px; object-fit: cover;"
+                         onerror="this.src='https://via.placeholder.com/250'">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${fav.producto.nombre}">Producto</h5>
+                        <p class="card-text text-truncate" th:text="${fav.producto.descripcion}">Descripción</p>
+                        <p class="text-primary fw-bold">₡ <span th:text="${fav.producto.precio}">0.00</span></p>
+                        <span class="badge bg-secondary" th:text="${fav.producto.categoria}">Categoría</span>
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                Agregado: <span th:text="${#temporals.format(fav.fechaAgregado, 'dd/MM/yyyy')}">01/01/2024</span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <a th:href="@{'/productos/' + ${fav.producto.idProducto}}" class="btn btn-primary btn-sm">Ver Detalle</a>
+                            <form th:action="@{'/comprador/favoritos/' + ${fav.producto.idProducto} + '/eliminar'}" 
+                                  method="post">
+                                <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                    Quitar de Favoritos
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

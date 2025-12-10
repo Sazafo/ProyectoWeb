@@ -1,15 +1,75 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .producto-card { transition: transform 0.2s; }
+        .producto-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- HU-016: Navegación por categorías -->
+        <div class="mb-4">
+            <h5>Categorías:</h5>
+            <div class="btn-group" role="group">
+                <a href="/productos" class="btn btn-outline-primary">Todos</a>
+                <a href="/productos/categoria/Camisetas" class="btn btn-outline-primary">Camisetas</a>
+                <a href="/productos/categoria/Pantalones" class="btn btn-outline-primary">Pantalones</a>
+                <a href="/productos/categoria/Vestidos" class="btn btn-outline-primary">Vestidos</a>
+                <a href="/productos/categoria/Zapatos" class="btn btn-outline-primary">Zapatos</a>
+                <a href="/productos/categoria/Accesorios" class="btn btn-outline-primary">Accesorios</a>
+            </div>
+        </div>
+
+        <div th:if="${categoriaActual}" class="alert alert-info">
+            Mostrando productos de: <strong th:text="${categoriaActual}"></strong>
+        </div>
+
+        <!-- Lista de productos -->
+        <div class="row">
+            <div class="col-md-3 mb-4" th:each="producto : ${productos}">
+                <div class="card producto-card h-100">
+                    <img th:src="@{'/img/productos/' + ${producto.imagen}}" 
+                         th:alt="${producto.nombre}" 
+                         class="card-img-top" 
+                         style="height: 250px; object-fit: cover;"
+                         onerror="this.src='https://via.placeholder.com/250'">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${producto.nombre}">Producto</h5>
+                        <p class="card-text text-truncate" th:text="${producto.descripcion}">Descripción</p>
+                        <p class="text-primary fw-bold">₡ <span th:text="${producto.precio}">0.00</span></p>
+                        <span class="badge bg-secondary" th:text="${producto.categoria}">Categoría</span>
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{'/productos/' + ${producto.idProducto}}" class="btn btn-primary btn-sm w-100">Ver Detalle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(productos)}" class="alert alert-warning text-center">
+            No hay productos disponibles en este momento.
+        </div>
+    </div>
+</body>
 </html>

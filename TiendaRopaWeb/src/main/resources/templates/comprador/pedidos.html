@@ -1,15 +1,89 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .estado-badge { font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link active" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link" href="/comprador/direcciones">Direcciones</a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HU-013: Historial de pedidos -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Historial de Pedidos</h2>
+        
+        <div th:if="${#lists.isEmpty(pedidos)}" class="alert alert-info text-center">
+            <h4>No tienes pedidos aún</h4>
+            <p>Comienza a comprar para ver tus pedidos aquí</p>
+            <a href="/productos" class="btn btn-primary">Ir a Productos</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" th:each="pedido : ${pedidos}">
+                <div class="card mb-3">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Pedido #<span th:text="${pedido.idPedido}">001</span></strong>
+                            <br>
+                            <small class="text-muted">
+                                <span th:text="${#temporals.format(pedido.fechaPedido, 'dd/MM/yyyy HH:mm')}">01/01/2024 10:00</span>
+                            </small>
+                        </div>
+                        <div>
+                            <span class="badge estado-badge"
+                                  th:classappend="${pedido.estado.name() == 'PENDIENTE'} ? 'bg-warning' : 
+                                                 (${pedido.estado.name() == 'PAGADO'} ? 'bg-info' : 
+                                                 (${pedido.estado.name() == 'ENVIADO'} ? 'bg-primary' : 
+                                                 (${pedido.estado.name() == 'ENTREGADO'} ? 'bg-success' : 'bg-danger')))"
+                                  th:text="${pedido.estado}">
+                                PENDIENTE
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="mb-1">
+                                    <strong>Dirección de envío:</strong><br>
+                                    <span th:text="${pedido.direccionEnvio}">Dirección completa</span>
+                                </p>
+                                <p class="mb-1">
+                                    <strong>Método de pago:</strong> 
+                                    <span th:text="${pedido.metodoPago}">Tarjeta</span>
+                                </p>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <h4 class="text-primary">
+                                    ₡ <span th:text="${pedido.total}">0.00</span>
+                                </h4>
+                                <a th:href="@{'/comprador/pedidos/' + ${pedido.idPedido}}" 
+                                   class="btn btn-sm btn-outline-primary">
+                                    Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
