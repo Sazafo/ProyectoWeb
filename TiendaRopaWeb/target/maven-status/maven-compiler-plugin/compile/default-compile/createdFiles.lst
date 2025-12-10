@@ -6,6 +6,7 @@ com\tiendaproyecto\tienda\controller\ProductoController.class
 com\tiendaproyecto\tienda\domain\Categoria.class
 com\tiendaproyecto\tienda\domain\Usuario.class
 com\tiendaproyecto\tienda\service\DireccionService.class
+com\tiendaproyecto\tienda\domain\CarritoItem.class
 com\tiendaproyecto\tienda\repository\CategoriaRepository.class
 com\tiendaproyecto\tienda\controller\CompradorController.class
 com\tiendaproyecto\tienda\domain\Direccion.class
