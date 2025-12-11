@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body>
+    <!-- HU-011 y HU-012: Checkout y Pago -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Finalizar Compra</h2>
+        
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <form th:action="@{/carrito/procesar-pago}" method="post">
+                    <!-- Dirección de envío -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5>1. Dirección de Envío</h5>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${#lists.isEmpty(direcciones)}" class="alert alert-warning">
+                                No tienes direcciones guardadas. 
+                                <a href="/comprador/direcciones" class="alert-link">Agregar una dirección</a>
+                            </div>
+                            
+                            <div th:unless="${#lists.isEmpty(direcciones)}">
+                                <div class="form-check mb-2" th:each="dir : ${direcciones}">
+                                    <input class="form-check-input" type="radio" name="idDireccion" 
+                                           th:id="'dir' + ${dir.idDireccion}"
+                                           th:value="${dir.idDireccion}"
+                                           th:checked="${dir.esPrincipal}"
+                                           required>
+                                    <label class="form-check-label" th:for="'dir' + ${dir.idDireccion}">
+                                        <strong th:text="${dir.direccion}">Dirección</strong><br>
+                                        <span th:text="${dir.ciudad}">Ciudad</span>, 
+                                        <span th:text="${dir.codigoPostal}">CP</span>
+                                        <span class="badge bg-success ms-2" th:if="${dir.esPrincipal}">Principal</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Método de pago -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5>2. Método de Pago</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="metodoPago" 
+                                       id="tarjeta" value="Tarjeta" checked required>
+                                <label class="form-check-label" for="tarjeta">
+                                    💳 Tarjeta de Crédito/Débito
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="metodoPago" 
+                                       id="sinpe" value="SINPE">
+                                <label class="form-check-label" for="sinpe">
+                                    📱 SINPE Móvil
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="metodoPago" 
+                                       id="efectivo" value="Efectivo">
+                                <label class="form-check-label" for="efectivo">
+                                    💵 Efectivo contra entrega
+                                </label>
+                            </div>
+                            
+                            <div class="alert alert-info mt-3">
+                                <small>🔒 Tu información de pago está protegida y encriptada</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            Confirmar y Pagar
+                        </button>
+                        <a href="/carrito" class="btn btn-outline-secondary">Volver al Carrito</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Resumen del pedido -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Resumen del Pedido</h5>
+                    </div>
+                    <div class="card-body">
+                        <div th:each="item : ${items}" class="mb-2 pb-2 border-bottom">
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <strong th:text="${item.producto.nombre}">Producto</strong>
+                                    <br><small class="text-muted">Cant: <span th:text="${item.cantidad}">1</span></small>
+                                </span>
+                                <span>₡ <span th:text="${item.subtotal}">0.00</span></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <strong>₡ <span th:text="${total}">0.00</span></strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Envío:</span>
+                            <span>Gratis</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h5>Total:</h5>
+                            <h5 class="text-success">₡ <span th:text="${total}">0.00</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!-- Ruta: src/main/resources/templates/carrito/checkout.html -->

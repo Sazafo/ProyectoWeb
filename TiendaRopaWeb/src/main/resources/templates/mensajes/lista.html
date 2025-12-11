@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Mensajes - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .mensaje-card { border-left: 4px solid #667eea; transition: all 0.2s; }
+        .mensaje-no-leido { border-left-color: #28a745; background-color: #f0fff4; }
+        .mensaje-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <!-- HU-019: Mensajes del sistema -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link" href="/carrito">Carrito</a>
+                <a class="nav-link active" href="/mensajes">
+                    Mensajes 
+                    <span th:if="${noLeidos > 0}" class="badge bg-danger" th:text="${noLeidos}">0</span>
+                </a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Mis Mensajes</h2>
+        
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div th:if="${noLeidos > 0}" class="alert alert-info">
+            Tienes <strong th:text="${noLeidos}">0</strong> mensaje(s) sin leer
+        </div>
+
+        <div th:if="${#lists.isEmpty(mensajes)}" class="alert alert-info text-center">
+            <h4>No tienes mensajes</h4>
+            <p>Los mensajes del sistema aparecerán aquí</p>
+        </div>
+
+        <div th:each="msg : ${mensajes}" 
+             class="card mensaje-card mb-3"
+             th:classappend="${!msg.leido} ? 'mensaje-no-leido' : ''">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                            <h5 class="card-title mb-0 me-2" th:text="${msg.titulo}">Título</h5>
+                            <span th:if="${!msg.leido}" class="badge bg-success">Nuevo</span>
+                            <span class="badge ms-2"
+                                  th:classappend="${msg.tipo.name() == 'PEDIDO_CONFIRMADO'} ? 'bg-success' : 
+                                                 (${msg.tipo.name() == 'PEDIDO_ENVIADO'} ? 'bg-info' : 
+                                                 (${msg.tipo.name() == 'PEDIDO_ENTREGADO'} ? 'bg-primary' : 
+                                                 (${msg.tipo.name() == 'PRODUCTO_APROBADO'} ? 'bg-success' : 
+                                                 (${msg.tipo.name() == 'CUENTA_APROBADA'} ? 'bg-success' : 'bg-secondary'))))"
+                                  th:text="${msg.tipo}">
+                                TIPO
+                            </span>
+                        </div>
+                        <p class="card-text" th:text="${msg.contenido}">Contenido del mensaje</p>
+                        <small class="text-muted">
+                            📅 <span th:text="${#temporals.format(msg.fechaCreacion, 'dd/MM/yyyy HH:mm')}">Fecha</span>
+                        </small>
+                    </div>
+                    <div class="ms-3">
+                        <div class="btn-group-vertical" role="group">
+                            <form th:if="${!msg.leido}" 
+                                  th:action="@{'/mensajes/' + ${msg.idMensaje} + '/leer'}" 
+                                  method="post">
+                                <button type="submit" class="btn btn-sm btn-outline-primary" title="Marcar como leído">
+                                    ✓ Leído
+                                </button>
+                            </form>
+                            <form th:action="@{'/mensajes/' + ${msg.idMensaje} + '/eliminar'}" 
+                                  method="post"
+                                  onsubmit="return confirm('¿Eliminar este mensaje?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger mt-1" title="Eliminar">
+                                    🗑️ Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!-- Ruta: src/main/resources/templates/mensajes/lista.html -->

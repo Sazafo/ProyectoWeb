@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito - Tienda Ropa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .carrito-item { border-left: 4px solid #667eea; }
+    </style>
+</head>
+<body>
+    <!-- HU-010: Carrito de compras -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/productos">Tienda Ropa</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/comprador/favoritos">Favoritos</a>
+                <a class="nav-link" href="/comprador/pedidos">Pedidos</a>
+                <a class="nav-link active" href="/carrito">Carrito</a>
+                <a class="nav-link" href="/mensajes">Mensajes</a>
+                <a class="nav-link" href="/comprador/perfil">Perfil</a>
+                <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link nav-link">Salir</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Mi Carrito de Compras</h2>
+        
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <div th:if="${#lists.isEmpty(items)}" class="alert alert-info text-center">
+            <h4>Tu carrito está vacío</h4>
+            <p>Agrega productos para comenzar tu compra</p>
+            <a href="/productos" class="btn btn-primary">Explorar Productos</a>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(items)}">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card carrito-item mb-3" th:each="item : ${items}">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-2">
+                                    <img th:src="@{'/img/productos/' + ${item.producto.imagen}}" 
+                                         th:alt="${item.producto.nombre}"
+                                         class="img-fluid"
+                                         style="max-height: 80px; object-fit: cover;"
+                                         onerror="this.src='https://via.placeholder.com/80'">
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 th:text="${item.producto.nombre}">Producto</h5>
+                                    <p class="text-muted mb-0">
+                                        <span th:if="${item.producto.talla}">Talla: <span th:text="${item.producto.talla}">M</span></span>
+                                        <span th:if="${item.producto.color}"> | Color: <span th:text="${item.producto.color}">Azul</span></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="mb-0">₡ <span th:text="${item.precioUnitario}">0.00</span></p>
+                                </div>
+                                <div class="col-md-2">
+                                    <form th:action="@{'/carrito/actualizar/' + ${item.idCarritoItem}}" method="post" class="d-flex align-items-center">
+                                        <input type="number" name="cantidad" th:value="${item.cantidad}" 
+                                               min="0" max="99" class="form-control form-control-sm me-2" style="width: 70px;">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">✓</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-2 text-end">
+                                    <strong>₡ <span th:text="${item.subtotal}">0.00</span></strong>
+                                    <form th:action="@{'/carrito/eliminar/' + ${item.idCarritoItem}}" method="post" class="mt-2">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Resumen del Pedido</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <strong>₡ <span th:text="${total}">0.00</span></strong>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Envío:</span>
+                                <span>Calculado en checkout</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5>Total:</h5>
+                                <h5 class="text-primary">₡ <span th:text="${total}">0.00</span></h5>
+                            </div>
+                            <a href="/carrito/checkout" class="btn btn-primary w-100 mb-2">Proceder al Pago</a>
+                            <a href="/productos" class="btn btn-outline-secondary w-100">Seguir Comprando</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!-- Ruta: src/main/resources/templates/carrito/ver.html -->

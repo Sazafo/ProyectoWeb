@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.tiendaproyecto.tienda.TiendaRopaApplicationTests" time="4.9" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.tiendaproyecto.tienda.TiendaRopaApplicationTests" time="14.247" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="CR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\issac\AppData\Local\Temp\surefire13630256399970972392\surefirebooter-20251210165512320_3.jar C:\Users\issac\AppData\Local\Temp\surefire13630256399970972392 2025-12-10T16-55-12_217-jvmRun1 surefire-20251210165512320_1tmp surefire_0-20251210165512320_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\issac\AppData\Local\Temp\surefire12942684989136239625\surefirebooter-20251210175250197_3.jar C:\Users\issac\AppData\Local\Temp\surefire12942684989136239625 2025-12-10T17-52-49_897-jvmRun1 surefire-20251210175250197_1tmp surefire_0-20251210175250197_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\issac\OneDrive\Documentos\Trabajos de la u\Proyectos_Git\TiendaWeb\ProyectoWeb\TiendaRopaWeb\target\test-classes;C:\Users\issac\OneDrive\Documentos\Trabajos de la u\Proyectos_Git\TiendaWeb\ProyectoWeb\TiendaRopaWeb\target\classes;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.0\spring-boot-starter-web-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.0\spring-boot-starter-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.0\spring-boot-starter-logging-3.2.0.jar;C:\Users\issac\.m2\repository\ch\qos\logback\logback-classic\1.4.11\logback-classic-1.4.11.jar;C:\Users\issac\.m2\repository\ch\qos\logback\logback-core\1.4.11\logback-core-1.4.11.jar;C:\Users\issac\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\issac\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\issac\.m2\repository\org\slf4j\jul-to-slf4j\2.0.9\jul-to-slf4j-2.0.9.jar;C:\Users\issac\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\issac\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.0\spring-boot-starter-json-3.2.0.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.3\jackson-databind-2.15.3.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.3\jackson-annotations-2.15.3.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.3\jackson-core-2.15.3.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.3\jackson-datatype-jdk8-2.15.3.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.3\jackson-datatype-jsr310-2.15.3.jar;C:\Users\issac\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.3\jackson-module-parameter-names-2.15.3.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.0\spring-boot-starter-tomcat-3.2.0.jar;C:\Users\issac\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.16\tomcat-embed-core-10.1.16.jar;C:\Users\issac\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.16\tomcat-embed-websocket-10.1.16.jar;C:\Users\issac\.m2\repository\org\springframework\spring-web\6.1.1\spring-web-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-beans\6.1.1\spring-beans-6.1.1.jar;C:\Users\issac\.m2\repository\io\micrometer\micrometer-observation\1.12.0\micrometer-observation-1.12.0.jar;C:\Users\issac\.m2\repository\io\micrometer\micrometer-commons\1.12.0\micrometer-commons-1.12.0.jar;C:\Users\issac\.m2\repository\org\springframework\spring-webmvc\6.1.1\spring-webmvc-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-context\6.1.1\spring-context-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-expression\6.1.1\spring-expression-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-thymeleaf\3.2.0\spring-boot-starter-thymeleaf-3.2.0.jar;C:\Users\issac\.m2\repository\org\thymeleaf\thymeleaf-spring6\3.1.2.RELEASE\thymeleaf-spring6-3.1.2.RELEASE.jar;C:\Users\issac\.m2\repository\org\thymeleaf\thymeleaf\3.1.2.RELEASE\thymeleaf-3.1.2.RELEASE.jar;C:\Users\issac\.m2\repository\org\attoparser\attoparser\2.0.7.RELEASE\attoparser-2.0.7.RELEASE.jar;C:\Users\issac\.m2\repository\org\unbescape\unbescape\1.1.6.RELEASE\unbescape-1.1.6.RELEASE.jar;C:\Users\issac\.m2\repository\com\mysql\mysql-connector-j\8.1.0\mysql-connector-j-8.1.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.2.0\spring-boot-starter-data-jpa-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.2.0\spring-boot-starter-aop-3.2.0.jar;C:\Users\issac\.m2\repository\org\aspectj\aspectjweaver\1.9.20.1\aspectjweaver-1.9.20.1.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.2.0\spring-boot-starter-jdbc-3.2.0.jar;C:\Users\issac\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-jdbc\6.1.1\spring-jdbc-6.1.1.jar;C:\Users\issac\.m2\repository\org\hibernate\orm\hibernate-core\6.3.1.Final\hibernate-core-6.3.1.Final.jar;C:\Users\issac\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\issac\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\issac\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\issac\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\issac\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\issac\.m2\repository\com\fasterxml\classmate\1.6.0\classmate-1.6.0.jar;C:\Users\issac\.m2\repository\net\bytebuddy\byte-buddy\1.14.10\byte-buddy-1.14.10.jar;C:\Users\issac\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.4\jaxb-runtime-4.0.4.jar;C:\Users\issac\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.4\jaxb-core-4.0.4.jar;C:\Users\issac\.m2\repository\org\eclipse\angus\angus-activation\2.0.1\angus-activation-2.0.1.jar;C:\Users\issac\.m2\repository\org\glassfish\jaxb\txw2\4.0.4\txw2-4.0.4.jar;C:\Users\issac\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\issac\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\issac\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\issac\.m2\repository\org\springframework\data\spring-data-jpa\3.2.0\spring-data-jpa-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\data\spring-data-commons\3.2.0\spring-data-commons-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\spring-orm\6.1.1\spring-orm-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-tx\6.1.1\spring-tx-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-aspects\6.1.1\spring-aspects-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.2.0\spring-boot-starter-security-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\spring-aop\6.1.1\spring-aop-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\security\spring-security-config\6.2.0\spring-security-config-6.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\security\spring-security-web\6.2.0\spring-security-web-6.2.0.jar;C:\Users\issac\.m2\repository\org\thymeleaf\extras\thymeleaf-extras-springsecurity6\3.1.2.RELEASE\thymeleaf-extras-springsecurity6-3.1.2.RELEASE.jar;C:\Users\issac\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.2.0\spring-boot-starter-validation-3.2.0.jar;C:\Users\issac\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.16\tomcat-embed-el-10.1.16.jar;C:\Users\issac\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\issac\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\issac\.m2\repository\commons-fileupload\commons-fileupload\1.5\commons-fileupload-1.5.jar;C:\Users\issac\.m2\repository\commons-io\commons-io\2.15.1\commons-io-2.15.1.jar;C:\Users\issac\.m2\repository\org\projectlombok\lombok\1.18.30\lombok-1.18.30.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-devtools\3.2.0\spring-boot-devtools-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.0\spring-boot-autoconfigure-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.0\spring-boot-starter-test-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-test\3.2.0\spring-boot-test-3.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.0\spring-boot-test-autoconfigure-3.2.0.jar;C:\Users\issac\.m2\repository\com\jayway\jsonpath\json-path\2.8.0\json-path-2.8.0.jar;C:\Users\issac\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\issac\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\issac\.m2\repository\net\minidev\json-smart\2.5.0\json-smart-2.5.0.jar;C:\Users\issac\.m2\repository\net\minidev\accessors-smart\2.5.0\accessors-smart-2.5.0.jar;C:\Users\issac\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\issac\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\issac\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\issac\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\issac\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\issac\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\issac\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\issac\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\issac\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\issac\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\issac\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\issac\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\issac\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\issac\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.10\byte-buddy-agent-1.14.10.jar;C:\Users\issac\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\issac\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\issac\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\issac\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-core\6.1.1\spring-core-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-jcl\6.1.1\spring-jcl-6.1.1.jar;C:\Users\issac\.m2\repository\org\springframework\spring-test\6.1.1\spring-test-6.1.1.jar;C:\Users\issac\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\issac\.m2\repository\org\springframework\security\spring-security-test\6.2.0\spring-security-test-6.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\security\spring-security-core\6.2.0\spring-security-core-6.2.0.jar;C:\Users\issac\.m2\repository\org\springframework\security\spring-security-crypto\6.2.0\spring-security-crypto-6.2.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="C:\Users\issac\AppData\Local\Temp\surefire13630256399970972392\surefirebooter-20251210165512320_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\issac\AppData\Local\Temp\surefire12942684989136239625\surefirebooter-20251210175250197_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -53,7 +53,7 @@
     <property name="user.dir" value="C:\Users\issac\OneDrive\Documentos\Trabajos de la u\Proyectos_Git\TiendaWeb\ProyectoWeb\TiendaRopaWeb"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="21324"/>
+    <property name="PID" value="22972"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="Cp1252"/>
@@ -66,10 +66,10 @@
     <property name="java.class.version" value="67.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[Tienda Ropa] "/>
   </properties>
-  <testcase name="contextLoads" classname="com.tiendaproyecto.tienda.TiendaRopaApplicationTests" time="0.329">
-    <system-out><![CDATA[16:55:12.998 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.tiendaproyecto.tienda.TiendaRopaApplicationTests]: TiendaRopaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:55:13.099 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.tiendaproyecto.tienda.TiendaRopaApplication for test class com.tiendaproyecto.tienda.TiendaRopaApplicationTests
-16:55:13.239 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+  <testcase name="contextLoads" classname="com.tiendaproyecto.tienda.TiendaRopaApplicationTests" time="0.79">
+    <system-out><![CDATA[17:52:51.954 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.tiendaproyecto.tienda.TiendaRopaApplicationTests]: TiendaRopaApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:52:52.392 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.tiendaproyecto.tienda.TiendaRopaApplication for test class com.tiendaproyecto.tienda.TiendaRopaApplicationTests
+17:52:53.048 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -79,24 +79,85 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2025-12-10T16:55:13.472-06:00  INFO 21324 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Starting TiendaRopaApplicationTests using Java 23 with PID 21324 (started by issac in C:\Users\issac\OneDrive\Documentos\Trabajos de la u\Proyectos_Git\TiendaWeb\ProyectoWeb\TiendaRopaWeb)
-2025-12-10T16:55:13.473-06:00 DEBUG 21324 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Running with Spring Boot v3.2.0, Spring v6.1.1
-2025-12-10T16:55:13.474-06:00  INFO 21324 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2025-12-10T16:55:14.153-06:00  INFO 21324 --- [Tienda Ropa] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-10T16:55:14.223-06:00  INFO 21324 --- [Tienda Ropa] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 9 JPA repository interfaces.
-2025-12-10T16:55:14.693-06:00  INFO 21324 --- [Tienda Ropa] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-12-10T16:55:14.739-06:00  INFO 21324 --- [Tienda Ropa] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2025-12-10T16:55:14.765-06:00  INFO 21324 --- [Tienda Ropa] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-12-10T16:55:15.014-06:00  INFO 21324 --- [Tienda Ropa] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-12-10T16:55:15.037-06:00  INFO 21324 --- [Tienda Ropa] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-12-10T16:55:15.181-06:00  INFO 21324 --- [Tienda Ropa] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ee2ae9a
-2025-12-10T16:55:15.183-06:00  INFO 21324 --- [Tienda Ropa] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-12-10T16:55:15.217-06:00  WARN 21324 --- [Tienda Ropa] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-12-10T16:55:16.006-06:00  INFO 21324 --- [Tienda Ropa] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-12-10T16:55:16.110-06:00  INFO 21324 --- [Tienda Ropa] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-12-10T16:55:16.747-06:00  WARN 21324 --- [Tienda Ropa] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-12-10T16:55:17.071-06:00  INFO 21324 --- [Tienda Ropa] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1415f18d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61c42e54, org.springframework.security.web.context.SecurityContextHolderFilter@373fb666, org.springframework.security.web.header.HeaderWriterFilter@6195ce27, org.springframework.web.filter.CorsFilter@533690d, org.springframework.security.web.authentication.logout.LogoutFilter@d98ce13, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@32f2de5c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1bd53c5c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38affd02, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3bf306d3, org.springframework.security.web.access.ExceptionTranslationFilter@52f71d2, org.springframework.security.web.access.intercept.AuthorizationFilter@61e4a072]
-2025-12-10T16:55:17.403-06:00  INFO 21324 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Started TiendaRopaApplicationTests in 4.176 seconds (process running for 4.997)
+2025-12-10T17:52:53.545-06:00  INFO 22972 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Starting TiendaRopaApplicationTests using Java 23 with PID 22972 (started by issac in C:\Users\issac\OneDrive\Documentos\Trabajos de la u\Proyectos_Git\TiendaWeb\ProyectoWeb\TiendaRopaWeb)
+2025-12-10T17:52:53.547-06:00 DEBUG 22972 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-12-10T17:52:53.549-06:00  INFO 22972 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-12-10T17:52:55.378-06:00  INFO 22972 --- [Tienda Ropa] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-10T17:52:55.557-06:00  INFO 22972 --- [Tienda Ropa] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 162 ms. Found 9 JPA repository interfaces.
+2025-12-10T17:52:56.678-06:00  INFO 22972 --- [Tienda Ropa] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-10T17:52:56.831-06:00  INFO 22972 --- [Tienda Ropa] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-10T17:52:57.005-06:00  INFO 22972 --- [Tienda Ropa] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-10T17:52:57.865-06:00  INFO 22972 --- [Tienda Ropa] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-10T17:52:57.975-06:00  INFO 22972 --- [Tienda Ropa] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-10T17:52:58.545-06:00  INFO 22972 --- [Tienda Ropa] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@58b97c15
+2025-12-10T17:52:58.550-06:00  INFO 22972 --- [Tienda Ropa] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-10T17:52:58.760-06:00  WARN 22972 --- [Tienda Ropa] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-10T17:53:00.880-06:00  INFO 22972 --- [Tienda Ropa] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    create table carrito_items (
+        id_carrito_item bigint not null auto_increment,
+        cantidad integer,
+        precio_unitario decimal(38,2),
+        id_producto bigint,
+        id_usuario bigint,
+        primary key (id_carrito_item)
+    ) engine=InnoDB
+Hibernate: 
+    create table detalle_pedidos (
+        id_detalle bigint not null auto_increment,
+        cantidad integer,
+        precio_unitario decimal(38,2),
+        subtotal decimal(38,2),
+        id_pedido bigint,
+        id_producto bigint,
+        primary key (id_detalle)
+    ) engine=InnoDB
+Hibernate: 
+    create table mensajes (
+        id_mensaje bigint not null auto_increment,
+        contenido TEXT,
+        fecha_creacion datetime(6),
+        leido bit,
+        tipo enum ('PEDIDO_CONFIRMADO','PEDIDO_ENVIADO','PEDIDO_ENTREGADO','PRODUCTO_APROBADO','PRODUCTO_RECHAZADO','CUENTA_APROBADA','SISTEMA'),
+        titulo varchar(255),
+        id_usuario bigint,
+        primary key (id_mensaje)
+    ) engine=InnoDB
+Hibernate: 
+    alter table pedidos 
+       modify column total decimal(38,2)
+Hibernate: 
+    alter table productos 
+       modify column precio decimal(38,2)
+Hibernate: 
+    alter table carrito_items 
+       add constraint FKnl3cynhq3tkm9urlflr505bb3 
+       foreign key (id_producto) 
+       references productos (id_producto)
+Hibernate: 
+    alter table carrito_items 
+       add constraint FKkrn6rmhamocisob9ixd5xh8hs 
+       foreign key (id_usuario) 
+       references usuarios (id_usuario)
+Hibernate: 
+    alter table detalle_pedidos 
+       add constraint FKs86924p3fo29iu6gayq3bjfad 
+       foreign key (id_pedido) 
+       references pedidos (id_pedido)
+Hibernate: 
+    alter table detalle_pedidos 
+       add constraint FKq12byw0tkkdekdmr3sgqqxfr0 
+       foreign key (id_producto) 
+       references productos (id_producto)
+Hibernate: 
+    alter table mensajes 
+       add constraint FK2f54l7y1jym38nv98m2mba494 
+       foreign key (id_usuario) 
+       references usuarios (id_usuario)
+2025-12-10T17:53:02.006-06:00  INFO 22972 --- [Tienda Ropa] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-10T17:53:03.609-06:00  WARN 22972 --- [Tienda Ropa] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-10T17:53:04.290-06:00  INFO 22972 --- [Tienda Ropa] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6c9e7af2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48cbb4c5, org.springframework.security.web.context.SecurityContextHolderFilter@5e97da56, org.springframework.security.web.header.HeaderWriterFilter@5a3d52a0, org.springframework.web.filter.CorsFilter@af04d6d, org.springframework.security.web.authentication.logout.LogoutFilter@1d86b636, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@75708130, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6cfe32cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f14eb51, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2740585b, org.springframework.security.web.access.ExceptionTranslationFilter@7894a250, org.springframework.security.web.access.intercept.AuthorizationFilter@7da40bf4]
+2025-12-10T17:53:05.007-06:00  INFO 22972 --- [Tienda Ropa] [           main] c.t.tienda.TiendaRopaApplicationTests    : Started TiendaRopaApplicationTests in 12.006 seconds (process running for 14.603)
 ]]></system-out>
     <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\issac\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.10\byte-buddy-agent-1.14.10.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
